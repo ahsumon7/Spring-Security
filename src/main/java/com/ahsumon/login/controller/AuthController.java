@@ -7,6 +7,7 @@ import com.ahsumon.login.repository.UserRepository;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Map;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -61,9 +64,6 @@ public class AuthController {
     }
 
 
-
-
-
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
         try {
@@ -84,4 +84,30 @@ public class AuthController {
     public String hello() {
         return "Hello, this is a secured endpoint!";
     }
+
+
+    @PreAuthorize("hasRole('USER')")
+    @PutMapping("/update/{username}")
+    public ResponseEntity<String> updateUser(
+            @PathVariable String username,
+            @RequestBody RegisterRequest request
+    ) {
+        UserEntity user = repo.findByUsername(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        // Update fields
+        user.setPassword(encoder.encode(request.getPassword())); // you may not want to update username
+        user.setRole(request.getRole());
+
+        UserDetailsEntity details = user.getUserDetails();
+        details.setFullName(request.getFullName());
+        details.setEmail(request.getEmail());
+        details.setContactNumber(request.getContactNumber());
+
+        user.setUserDetails(details);
+
+        repo.save(user);
+        return ResponseEntity.ok("User updated successfully!");
+    }
+
 }
