@@ -84,6 +84,11 @@ public class AuthController {
     public String hello() {
         return "Hello, this is a secured endpoint!";
     }
+
+    //@PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
+
     @GetMapping("/userlist")
     public ResponseEntity<?> userlist() {
         return ResponseEntity.ok(repo.findAll());
