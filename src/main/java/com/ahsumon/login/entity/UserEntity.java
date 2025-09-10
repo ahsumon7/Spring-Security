@@ -1,10 +1,10 @@
 package com.ahsumon.login.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @NoArgsConstructor
@@ -24,8 +24,9 @@ public class UserEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-    // One-to-One mapping with UserDetailsEntity
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserDetailsEntity userDetails;
 
+    // One-to-One mapping with UserDetailsEntity
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private UserDetailsEntity userDetails;
 }
