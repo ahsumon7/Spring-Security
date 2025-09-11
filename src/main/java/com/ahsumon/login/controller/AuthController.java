@@ -21,7 +21,7 @@ import java.util.Map;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/public")
 public class AuthController {
     private final UserRepository repo;
     private final BCryptPasswordEncoder encoder;
@@ -80,45 +80,13 @@ public class AuthController {
         return ResponseEntity.ok(userDetails);
     }
 
+
     @GetMapping("/hello")
     public String hello() {
         return "Hello, this is a secured endpoint!";
     }
 
-    //@PreAuthorize("hasRole('ADMIN')")
-    //@PreAuthorize("hasAuthority('ADMIN')")
-    @PreAuthorize("hasRole('ADMIN')")
-
-    @GetMapping("/userlist")
-    public ResponseEntity<?> userlist() {
-        return ResponseEntity.ok(repo.findAll());
-    }
 
 
-
-
-    @PreAuthorize("hasRole('USER')")
-    @PutMapping("/update/{username}")
-    public ResponseEntity<String> updateUser(
-            @PathVariable String username,
-            @RequestBody RegisterRequest request
-    ) {
-        UserEntity user = repo.findByUsername(username)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-
-        // Update fields
-        user.setPassword(encoder.encode(request.getPassword())); // you may not want to update username
-        user.setRole(request.getRole());
-
-        UserDetailsEntity details = user.getUserDetails();
-        details.setFullName(request.getFullName());
-        details.setEmail(request.getEmail());
-        details.setContactNumber(request.getContactNumber());
-
-        user.setUserDetails(details);
-
-        repo.save(user);
-        return ResponseEntity.ok("User updated successfully!");
-    }
 
 }
