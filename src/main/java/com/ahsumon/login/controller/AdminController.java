@@ -33,6 +33,8 @@ public class AdminController {
     public ResponseEntity<String> deleteUser(@PathVariable String username) {
         userService.deleteUser(username);
         return ResponseEntity.ok("User deleted successfully!");
+
     }
 }
+
 
