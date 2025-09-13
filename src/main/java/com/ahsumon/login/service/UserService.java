@@ -6,14 +6,17 @@ import com.ahsumon.login.dto.RegisterRequest;
 import com.ahsumon.login.entity.UserDetailsEntity;
 import com.ahsumon.login.entity.UserEntity;
 import com.ahsumon.login.repository.UserRepository;
+import com.ahsumon.login.utils.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -22,11 +25,13 @@ public class UserService {
     private final UserRepository repo;
     private final BCryptPasswordEncoder encoder;
     private final AuthenticationManager authManager;
+    private final JwtUtil jwtUtil;
 
-    public UserService(UserRepository repo, BCryptPasswordEncoder encoder, AuthenticationManager authManager) {
+    public UserService(UserRepository repo, BCryptPasswordEncoder encoder, AuthenticationManager authManager, JwtUtil jwtUtil) {
         this.repo = repo;
         this.encoder = encoder;
         this.authManager = authManager;
+        this.jwtUtil = jwtUtil;
     }
     public String registerUser(RegisterRequest request) {
         if (repo.findByUsername(request.getUsername()).isPresent()) {
@@ -82,8 +87,7 @@ public class UserService {
         repo.delete(user);
     }
 
-
-    public Object authenticateUser(String username, String password) {
+    public String authenticateUser(String username, String password) {
         try {
             authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password)
@@ -92,9 +96,16 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username or password");
         }
 
-        // Load user details to return
-        return repo.findByUsername(username)
+        UserEntity user = repo.findByUsername(username)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        // Generate JWT
+        return jwtUtil.generateToken(user.getUsername(), user.getRole().name());
+    }
+    public Collection<GrantedAuthority> getAuthorities(String username) {
+        UserEntity user = repo.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
     }
 
 

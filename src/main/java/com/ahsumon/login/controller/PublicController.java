@@ -27,15 +27,26 @@ public class PublicController {
     }
 
 
+//    @PostMapping("/login")
+//    public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
+//        String username = body.get("username");
+//        String password = body.get("password");
+//
+//        // Call the service to authenticate
+//        Object userDetails = userService.authenticateUser(username, password);
+//        return ResponseEntity.ok(userDetails);
+//    }
+
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
         String username = body.get("username");
         String password = body.get("password");
 
-        // Call the service to authenticate
-        Object userDetails = userService.authenticateUser(username, password);
-        return ResponseEntity.ok(userDetails);
+        String token = userService.authenticateUser(username, password);
+        return ResponseEntity.ok(Map.of("token", token));
     }
+
 
     @GetMapping("/hello")
     public ResponseEntity<String> hello() {
