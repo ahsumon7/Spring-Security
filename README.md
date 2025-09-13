@@ -1,21 +1,31 @@
-This is my personal Spring Boot starter project, set up with:
+🛡️ Spring Boot JWT Authentication System
+📌 Overview
 
-Spring Boot 3.5.3 for the latest stable framework features
+This project is a Spring Boot-based authentication and authorization system that uses JWT (JSON Web Token) for securing APIs.
+It includes:
 
-Java 21 compatibility to leverage the newest Java language improvements
+User registration & login
 
-A clean Maven setup with essential dependencies:
+JWT generation and validation
 
-spring-boot-starter-web for building web applications and REST APIs
+Role-based access control using Spring Security
 
-spring-boot-starter-test for robust testing support
+Centralized exception handling for authentication and authorization errors
 
-Configured Maven Compiler Plugin targeting Java 21 bytecode
+Secure endpoint protection with @PreAuthorize
 
-Spring Boot Maven Plugin for easy build and run commands
+⚙️ Tech Stack
 
-This blank template helps me quickly bootstrap any new Spring Boot backend application with modern Java, ensuring a smooth development experience.
+Java 21
 
+Spring Boot
 
-https://ahsumon7.github.io/sumon/
-# Spring-Security
+Spring Web
+
+Spring Security
+
+JWT (io.jsonwebtoken / jjwt)
+
+Maven
+
+Postman (for testing)
