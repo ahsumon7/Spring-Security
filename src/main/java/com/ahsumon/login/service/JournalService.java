@@ -68,7 +68,9 @@ public class JournalService {
 
     // Update journal
     public JournalEntity update(Long id, JournalEntity updated) {
-        JournalEntity journal = journalRepository.findById(id).orElseThrow();
+        JournalEntity journal = journalRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Journal not found with ID: " + id));
+
         UserEntity current = getCurrentUser();
 
         // Allow update if current user is owner OR admin

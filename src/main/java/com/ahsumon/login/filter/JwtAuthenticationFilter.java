@@ -54,5 +54,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
 
+        filterChain.doFilter(request, response);
+//        logger.info("Authorization header: " + authHeader);
+//        logger.info("Username extracted: " + username);
     }
 }
