@@ -1,0 +1,31 @@
+2025-09-14T20:10:30.042+06:00  INFO 6701 --- [main] com.ahsumon.login.LoginApplication       : Starting LoginApplication using Java 21.0.2 with PID 6701 (/Users/abdulhannansumon/Projects/Spring Security/target/classes started by abdulhannansumon in /Users/abdulhannansumon/Projects/Spring Security)
+2025-09-14T20:10:30.043+06:00 DEBUG 6701 --- [main] com.ahsumon.login.LoginApplication       : Running with Spring Boot v3.3.2, Spring v6.1.11
+2025-09-14T20:10:30.043+06:00  INFO 6701 --- [main] com.ahsumon.login.LoginApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-14T20:10:30.334+06:00  INFO 6701 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-14T20:10:30.358+06:00  INFO 6701 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 2 JPA repository interfaces.
+2025-09-14T20:10:30.632+06:00  INFO 6701 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-14T20:10:30.638+06:00  INFO 6701 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-14T20:10:30.638+06:00  INFO 6701 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2025-09-14T20:10:30.657+06:00  INFO 6701 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-14T20:10:30.657+06:00  INFO 6701 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 597 ms
+2025-09-14T20:10:30.731+06:00  INFO 6701 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-14T20:10:30.757+06:00  INFO 6701 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-09-14T20:10:30.770+06:00  INFO 6701 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-14T20:10:30.927+06:00  INFO 6701 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-14T20:10:30.939+06:00  INFO 6701 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-14T20:10:31.010+06:00  INFO 6701 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@48368a08
+2025-09-14T20:10:31.011+06:00  INFO 6701 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-14T20:10:31.028+06:00  WARN 6701 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-14T20:10:31.478+06:00  INFO 6701 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-14T20:10:31.534+06:00  INFO 6701 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-14T20:10:31.707+06:00  INFO 6701 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-09-14T20:10:31.738+06:00 DEBUG 6701 --- [main] c.a.l.filter.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2025-09-14T20:10:31.781+06:00  WARN 6701 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-14T20:10:32.225+06:00  INFO 6701 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-14T20:10:32.232+06:00  INFO 6701 --- [main] com.ahsumon.login.LoginApplication       : Started LoginApplication in 2.367 seconds (process running for 2.852)
+2025-09-14T20:10:35.839+06:00  INFO 6701 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-14T20:10:35.840+06:00  INFO 6701 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-14T20:10:35.843+06:00  INFO 6701 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-09-14T20:10:35.908+06:00  INFO 6701 --- [http-nio-8080-exec-1] com.ahsumon.login.service.UserService    : Attempting to register user: timon
+2025-09-14T20:10:35.984+06:00  WARN 6701 --- [http-nio-8080-exec-1] com.ahsumon.login.service.UserService    : Registration failed. User timon already exists
+2025-09-14T20:27:24.438+06:00  WARN 6701 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m23s212ms).
