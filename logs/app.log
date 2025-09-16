@@ -29,3 +29,6 @@
 2025-09-14T20:10:35.908+06:00  INFO 6701 --- [http-nio-8080-exec-1] com.ahsumon.login.service.UserService    : Attempting to register user: timon
 2025-09-14T20:10:35.984+06:00  WARN 6701 --- [http-nio-8080-exec-1] com.ahsumon.login.service.UserService    : Registration failed. User timon already exists
 2025-09-14T20:27:24.438+06:00  WARN 6701 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m23s212ms).
+2025-09-14T21:10:43.864+06:00  INFO 6701 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-14T21:10:43.895+06:00  INFO 6701 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-14T21:10:43.903+06:00  INFO 6701 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
