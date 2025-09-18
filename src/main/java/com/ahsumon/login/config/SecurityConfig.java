@@ -35,7 +35,7 @@ public class SecurityConfig {
                                            CustomAuthenticationEntryPoint authEntryPoint,
                                            CustomAccessDeniedHandler accessDeniedHandler) throws Exception {
 
-        http
+                http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/public/register", "/api/public/login", "/api/public/hello").permitAll()
