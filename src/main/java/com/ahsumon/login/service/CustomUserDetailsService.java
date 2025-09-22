@@ -1,8 +1,8 @@
 package com.ahsumon.login.service;
 
-import com.ahsumon.login.entity.UserEntity; // Your custom user entity class
+import com.ahsumon.login.entity.UserEntity;
 import com.ahsumon.login.repository.UserRepository;
-import org.springframework.security.core.userdetails.User; // Spring Security's User class
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
